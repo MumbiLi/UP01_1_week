@@ -1,0 +1,40 @@
+﻿<Window x:Class="PlanetDetstvaAppWPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Авторизация" Height="450" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Логин:" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtLogin" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Пароль:" VerticalAlignment="Center"/>
+        <PasswordBox x:Name="txtPassword" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <TextBlock x:Name="lblError" Grid.Row="2" Grid.ColumnSpan="2" Foreground="Red" TextWrapping="Wrap" Margin="5"/>
+
+        <TextBlock x:Name="lblCaptchaMessage" Grid.Row="3" Grid.ColumnSpan="2" Text="Введите код с картинки:" Visibility="Collapsed" Margin="5"/>
+        <Image x:Name="picCaptcha" Grid.Row="4" Grid.ColumnSpan="2" Height="70" Stretch="Fill" Visibility="Collapsed" Margin="5"/>
+        <TextBox x:Name="txtCaptcha" Grid.Row="5" Grid.ColumnSpan="2" Visibility="Collapsed" Margin="5"/>
+
+        <TextBlock x:Name="lblBlockTimer" Grid.Row="6" Grid.ColumnSpan="2" Foreground="Red" Visibility="Collapsed" Margin="5"/>
+
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="btnLogin" Content="Войти" Width="100" Height="35" Margin="5" Background="LightGreen" Click="BtnLogin_Click"/>
+            <Button x:Name="btnGuest" Content="Гость" Width="100" Height="35" Margin="5" Click="BtnGuest_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

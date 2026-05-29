@@ -1,0 +1,67 @@
+﻿<Window x:Class="PlanetDetstvaAppWPF.ProductsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlanetDetstvaAppWPF"
+        mc:Ignorable="d"
+        Title="Товары" Height="550" Width="1100" 
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Список товаров" FontSize="20" FontWeight="Bold" Margin="5"/>
+
+        <DataGrid x:Name="dgvProducts" Grid.Row="1" AutoGenerateColumns="False" 
+                  IsReadOnly="True" Margin="5" 
+                  RowBackground="White" AlternatingRowBackground="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикул" Binding="{Binding Article}" Width="100"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding ProductName}" Width="220"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}" Width="120"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding ManufacturerName}" Width="150"/>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding SupplierName}" Width="150"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding PriceDisplay}" Width="80"/>
+                <DataGridTextColumn Header="Цена со скидкой" Binding="{Binding FinalPriceDisplay}" Width="100"/>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding QuantityInStock}" Width="80"/>
+                <DataGridTextColumn Header="Скидка" Binding="{Binding Discount, StringFormat={}{0}%}" Width="80"/>
+
+                <DataGridTemplateColumn Header="Фото" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PhotoImage}" Height="60" Stretch="Uniform"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Действие" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Добавить в заказ" 
+                                    Click="AddToOrder_Click" 
+                                    Tag="{Binding ProductID}"
+                                    Height="25" Width="110"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding RowColor}"/>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+
+        <Button x:Name="btnBack" Grid.Row="2" Content="Назад" Width="100" Height="35" 
+                HorizontalAlignment="Left" Margin="5,10" Click="BtnBack_Click"/>
+
+        <TextBlock x:Name="lblCount" Grid.Row="2" HorizontalAlignment="Right" 
+                   VerticalAlignment="Center" Margin="5" FontSize="12"/>
+    </Grid>
+</Window>
